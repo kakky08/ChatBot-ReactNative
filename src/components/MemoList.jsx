@@ -1,41 +1,63 @@
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
-  View, Text, StyleSheet, TouchableOpacity,
+  View, Text, StyleSheet, TouchableOpacity, Alert,
 } from 'react-native';
 
 export default function MemoList() {
+  // 子供のコンポーネントの場合はnavigationは使えないのでuseNacigationを使う
+  const navigation = useNavigation();
   return (
     <View>
-      <View style={styles.memoListItem}>
+      <TouchableOpacity
+        style={styles.memoListItem}
+        onPress={() => { navigation.navigate('MemoDitail'); }}
+      >
         <View>
           <Text style={styles.memoListItemTitle}>買い物リスト</Text>
           <Text style={styles.memoListItemDate}>2020年12月24日 10:00</Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity
+          style={styles.memoDelete}
+          onPress={() => { Alert.alert('Are you sure?'); }}
+        >
           <Feather name="x" size={16} color="#fff" />
         </TouchableOpacity>
-      </View>
+      </TouchableOpacity>
 
-      <View style={styles.memoListItem}>
+      <TouchableOpacity
+        style={styles.memoListItem}
+        onPress={() => { navigation.navigate('MemoDitail'); }}
+      >
         <View>
           <Text style={styles.memoListItemTitle}>買い物リスト</Text>
           <Text style={styles.memoListItemDate}>2020年12月24日 10:00</Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity
+          style={styles.memoDelete}
+          onPress={() => { Alert.alert('Are you sure?'); }}
+        >
           <Feather name="x" size={16} color="#fff" />
         </TouchableOpacity>
-      </View>
+      </TouchableOpacity>
 
-      <View style={styles.memoListItem}>
+      <TouchableOpacity
+        style={styles.memoListItem}
+        onPress={() => { navigation.navigate('MemoDitail'); }}
+      >
         <View>
           <Text style={styles.memoListItemTitle}>買い物リスト</Text>
           <Text style={styles.memoListItemDate}>2020年12月24日 10:00</Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity
+          style={styles.memoDelete}
+          onPress={() => { Alert.alert('Are you sure?'); }}
+        >
           <Feather name="x" size={16} color="#fff" />
         </TouchableOpacity>
-      </View>
+      </TouchableOpacity>
+
     </View>
   );
 }
@@ -59,5 +81,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16,
     color: '#fff',
+  },
+  memoDelete: {
+    // タップ出来る領域を増やすため
+    padding: 8,
   },
 });

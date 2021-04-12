@@ -2,24 +2,38 @@ import React from 'react';
 import {
   Text, View, StyleSheet, TextInput, TouchableOpacity,
 } from 'react-native';
-import AppBar from '../components/AppBar';
 import Button from '../components/Button';
 
-export default function LogInScreen() {
+export default function LogInScreen(props) {
+  const { navigation } = props;
   return (
     <View style={styles.container}>
-      <AppBar />
       <View style={styles.inner}>
 
         <Text style={styles.title}>Log In</Text>
         <TextInput style={styles.input} value="Email Address" />
         <TextInput style={styles.input} value="passsward" />
 
-        <Button label="Submit" />
+        <Button
+          label="Submit"
+          // 履歴を消して戻るボタンを表示されないようにコントロール
+          onPress={() => {
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'MemoList' }],
+            });
+          }}
+        />
 
         <View style={styles.fotter}>
           <Text style={styles.fotterText}>Not registered?</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => {
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'SignUp' }],
+            });
+          }}
+          >
             <Text style={styles.fotterLink}> Sign up here!</Text>
           </TouchableOpacity>
         </View>

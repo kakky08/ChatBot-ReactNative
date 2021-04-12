@@ -2,13 +2,12 @@ import React from 'react';
 import {
   View, ScrollView, Text, StyleSheet,
 } from 'react-native';
-import AppBar from '../components/AppBar';
 import CircleButton from '../components/CircleButton';
 
-export default function MemoDitailScreen() {
+export default function MemoDitailScreen(props) {
+  const { navigation } = props;
   return (
     <View style={styles.container}>
-      <AppBar />
 
       <View style={styles.memoHeader}>
         <Text style={styles.memoTitle}>買い物リスト</Text>
@@ -22,7 +21,11 @@ export default function MemoDitailScreen() {
           本文用なので使い方を間違えると不自然に見えることもありますので要注意。
         </Text>
       </ScrollView>
-      <CircleButton style={{ top: 168, bottom: 'auto' }} name="edit-2" />
+      <CircleButton
+        style={{ top: 60, bottom: 'auto' }}
+        name="edit-2"
+        onPress={() => { navigation.navigate('MemoEdit'); }}
+      />
     </View>
   );
 }
