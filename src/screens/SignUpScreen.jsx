@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Text, View, StyleSheet, TextInput, TouchableOpacity,
 } from 'react-native';
@@ -6,13 +6,39 @@ import Button from '../components/Button';
 
 export default function SignUpScreen(props) {
   const { navigation } = props;
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <View style={styles.container}>
       <View style={styles.inner}>
 
         <Text style={styles.title}>Sing Up</Text>
-        <TextInput style={styles.input} value="Email Address" />
-        <TextInput style={styles.input} value="passsward" />
+        <TextInput
+          style={styles.input}
+          value={email}
+          onChangeText={(text) => { setEmail(text); }}
+          // 先頭が大文字にならないように設定
+          autoCapitalize="none"
+          // キーボードを変更
+          keyboardType="email-address"
+          // 何を入力するべきかを表示
+          placeholder="email-address"
+          // iosでキーチェーンで保存できる
+          textContentType="emailAddress"
+        />
+        <TextInput
+          style={styles.input}
+          value={password}
+          onChangeText={(text) => { setPassword(text); }}
+          // 先頭が大文字にならないように設定
+          autoCapitalize="none"
+          // 何を入力するべきかを表示
+          placeholder="Password"
+          // パスワードを伏字にしてくれる
+          secureTextEntry
+          // iosでキーチェーンで保存できる
+          textContentType="password"
+        />
 
         <Button
           label="Submit"
